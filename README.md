@@ -1,12 +1,18 @@
 # 微网与外部电网电力调控策略
 
+> Microgrid dispatch optimization — 2026 年高教社杯全国大学生数学建模竞赛 C 题
+
 [![CI](https://github.com/Alwayshere-su/cumcm-2026-microgrid/actions/workflows/ci.yml/badge.svg)](https://github.com/Alwayshere-su/cumcm-2026-microgrid/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 
-2026 年高教社杯全国大学生数学建模竞赛 **C 题** 的赛后整理。仓库只保留三部分：**可运行源程序、算法设计文档、最终结果**。论文、AI 使用报告与论文图件不纳入本仓库。
+## 简介
 
-> 本仓库为参赛队赛后自行整理，**不代表竞赛官方**，也未收录任何赛题原始附件、官方参考答案或参考论文。
+一个微网与外部电网之间的购电与储能调度项目：在电价、负荷与光伏出力可预测或部分未知的条件下，决定每个 10 分钟时段的购电量与储能充放电功率，使全年用电成本最小。
 
-## 算法设计
+项目包含四个递进的问题：确定性线性规划、考虑源荷不确定性的情景随机优化、日内四次滚动调整，以及外部电价实时波动下的因果执行。四问共用同一套逐时段能量守恒与 SOC 递推骨架，差别在信息条件与决策粒度。
+
+## 方法
 
 | 问题 | 信息条件 | 主要方法 | 决策粒度 |
 | --- | --- | --- | --- |
@@ -15,18 +21,11 @@
 | 问题三 | 每日 0:00 / 6:00 / 12:00 / 18:00 更新光伏预报 | 条件库存价值；滚动时域（MPC）；少购违约金与超购附加费；A/B/C 三种结算口径对比 | 每日 4 次滚动调整 |
 | 问题四 | 外部电价实时波动 | 因果价格预测；重建 4-2 / 4-3 模型；执行层因果约束；离线完全信息下界与遗憾值 | 逐段执行 |
 
-四问共用三项骨架：逐时段能量守恒、储能 SOC 递推、不可前视的因果执行。完整推导、符号与约束见 [`docs/model/`](docs/model/)：
+完整推导、符号与约束见 [`docs/model/`](docs/model/)。
 
-- [问题一最终模型](docs/model/问题一最终模型.md)
-- [问题二最终模型](docs/model/问题二最终模型.md)
-- [问题三最终模型](docs/model/问题三最终模型.md)
-- [问题四最终模型](docs/model/问题四最终模型.md)
-- [问题二特征选择依据](docs/model/问题二特征选择依据.md)
-- [问题三灵敏性分析](docs/model/问题3_灵敏性分析.md)
+## 结果
 
-## 主要结果
-
-回测区间为 **2025-02-01 至 2025-12-31（334 天）**，全部结果由 `results/final/` 中的机器可读指标复核。
+回测区间为 **2025-02-01 至 2025-12-31（334 天）**，全部数值由 `results/final/` 中的机器可读指标复核。
 
 | 指标 | 结果 |
 | --- | --- |
@@ -40,33 +39,23 @@
 | 问题三 CVaR95（日费用） | 63,895.07 元 |
 | 问题四离线完全信息下界 | 12,780,883.29 元 |
 
-问题四的 4-2 / 4-3 多口径结果、价格信号价值与承诺价值分解见 [`results/final/q4_42_fusion_summary.json`](results/final/q4_42_fusion_summary.json)、[`results/final/paper_metrics.json`](results/final/paper_metrics.json)。
+问题四的 4-2 / 4-3 多口径结果、价格信号价值与承诺价值分解见 [`results/final/q4_42_fusion_summary.json`](results/final/q4_42_fusion_summary.json) 与 [`results/final/metrics.json`](results/final/metrics.json)。
 
-## 仓库结构
+## 项目结构
 
 ```text
 .
-├── code/                 45 个 Python 源程序（含 _project.py、_style/plot_style.py）
-├── tests/                9 组验收测试
+├── code/                 求解、预测、回测、绘图与核验程序
+│   └── _style/           统一绘图样式
+├── tests/                验收测试
 ├── docs/model/           四问模型推导、特征选择与灵敏度分析
-├── results/final/        5 张赛题结果表 + 14 个关键指标 JSON
-├── DATA.md               数据来源与目录约定
-├── ATTRIBUTION.md        赛题、第三方资源与合规说明
-└── requirements.txt
+├── results/final/        5 张结果表 + 14 个关键指标 JSON
+├── ATTRIBUTION.md        题目来源、第三方依赖与使用声明
+├── requirements.txt
+└── .github/workflows/    CI：依赖安装、语法检查、测试
 ```
 
-### 代码入口
-
-| 文件 | 作用 |
-| --- | --- |
-| `code/preprocess.py` | 附件 1–5 → 统一 10 分钟面板、质量契约、基础图 |
-| `code/solve_q1_lp.py` | 问题一正式线性规划入口 |
-| `code/solve_q2_method3.py` | 问题二融合预测 + 情景 SAA + DP 库存价值 |
-| `code/solve_q3_final.py` | 问题三四时刻滚动优化与口径 C 结算 |
-| `code/forecast_q4_price.py` | 问题四因果价格预测模块 |
-| `code/harness_q4.py` | 问题四 4-2 / 4-3 策略回测与对照 |
-| `code/write_result4.py` | 问题四结果表写入与审计 |
-| `code/verify_paper_numbers.py` | 结果文件与关键数值的一致性核对 |
+代码入口与模块说明见 [`code/README.md`](code/README.md)。
 
 ## 快速开始
 
@@ -74,29 +63,53 @@
 python -m venv .venv
 # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+```
 
-# 1. 把官方附件按 DATA.md 的目录约定放到 附件/
-python code/preprocess.py
+### 准备数据
 
-# 2. 四问正式求解（完整回测耗时较长）
-python code/solve_q1_lp.py
+赛题的原始附件不在本仓库中，请从竞赛官方渠道获取，并按以下结构放在项目根目录：
+
+```text
+附件/
+├── 附件1.xlsx           # 典型日：144 时段电价、负荷、光伏预测
+├── 附件2.xlsx           # 全年实测：小区负载、光伏发电实际功率
+├── 附件3.xlsx           # 每日 0:00 / 6:00 / 12:00 / 18:00 光伏预报
+├── 附件4.xlsx           # 全年动态电价
+└── 附件5/
+    ├── result1.xlsx     # 问题一结果模板
+    ├── result2.xlsx     # 问题二结果模板
+    ├── result3.xlsx     # 问题三结果模板
+    ├── result4-2.xlsx   # 问题四 4-2 结果模板
+    └── result4-3.xlsx   # 问题四 4-3 结果模板
+```
+
+### 运行
+
+```bash
+python code/preprocess.py          # 附件 1–5 → 统一 10 分钟面板
+python code/solve_q1_lp.py         # 问题一
 python code/solve_q2_method3.py --save
 python code/solve_q3_final.py --save
 python code/harness_q4.py
 python code/write_result4.py
+```
 
-# 3. 验收测试
+中间数据写入 `data_processed/`，结果写入 `results/`（均不纳入版本控制）。
+
+### 测试
+
+```bash
 pytest tests -q
 ```
 
-本机在包含附件与派生数据的环境下执行结果为 **51 passed, 4 skipped**；4 项跳过均因未放入 `附件/附件5/` 的官方结果模板。**全新 clone 不含赛题附件**，数据相关测试会自动跳过（**29 passed, 26 skipped**），合成数据与结算恒等式测试仍会运行。
+- 含附件与派生数据：**51 passed, 4 skipped**（跳过项缺 `附件/附件5/` 的官方结果模板）。
+- 全新 clone 不含附件：数据相关测试自动跳过，**29 passed, 26 skipped**；合成数据与结算恒等式测试仍会运行。
 
-## 数据与合规
+## 声明
 
-- **不收录**赛题附件 1–5、官方参考答案、参考论文与格式模板；复现所需数据请从竞赛官方渠道获取，见 [`DATA.md`](DATA.md)。
-- 仓库中的代码、模型文档与结果文件均为参赛队自主产出。
-- 论文、AI 工具使用报告与论文图件未纳入本仓库。
-- 第三方 Python 依赖遵循各自许可证，详见 [`ATTRIBUTION.md`](ATTRIBUTION.md)。
+- 赛题、附件与官方模板的版权归 2026 年全国大学生数学建模竞赛组委会所有；本仓库未收录赛题附件、官方参考答案、参考论文或格式模板，也不代表竞赛官方。
+- `code/`、`docs/` 与 `results/final/` 为作者独立完成与运行产出。
+- 第三方依赖遵循各自许可证，见 [`ATTRIBUTION.md`](ATTRIBUTION.md)。
 
 ## 引用
 

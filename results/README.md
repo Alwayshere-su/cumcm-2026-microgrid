@@ -16,7 +16,7 @@
 
 ### 关键指标 JSON（14）
 
-包括 `paper_metrics.json`（关键数值总表，文件名沿用参赛期约定）、`q1_summary.json`、`q2_summary.json`、`q2_method3_summary.json`、`q2_accuracy_comparison.json`、`q3_summary.json`、`q3_final_summary.json`、`q3_voi_summary.json`、`q1_layer_comparison.json`、`q2_four_days_final.json`、`q4_42_fusion_summary.json`、`q4_offline_bound.json` 及两份写入审计。
+包括 `metrics.json`（关键数值总表）、`q1_summary.json`、`q2_summary.json`、`q2_method3_summary.json`、`q2_accuracy_comparison.json`、`q3_summary.json`、`q3_final_summary.json`、`q3_voi_summary.json`、`q1_layer_comparison.json`、`q2_four_days_final.json`、`q4_42_fusion_summary.json`、`q4_offline_bound.json` 及两份写入审计。
 
 ## 本地运行产物
 

@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-"""论文数字的单一事实源（single source of truth）。
+"""关键数值汇总（single source of truth）。
 
-把散落在 results/*.json 与 csv 中的关键数字集中抽取，并计算少数派生量
-（如价格形状相关系数），统一写入 results/paper_metrics.json。
+把散落在 results/*.json 与 csv 中的关键指标集中抽取，并计算少数派生量
+（如价格形状相关系数），统一写入 results/final/metrics.json。
 
-论文脚本 build_paper_draft.py 与校验脚本 verify_paper_numbers.py 都从这里取值，
-避免正文手写数字与结果文件漂移。
+结果文件、文档与 README 中的数值都从这里取值，避免各处数字漂移。
 
 用法：
-    python scripts/paper_metrics.py            # 生成 results/paper_metrics.json
-    python scripts/paper_metrics.py --show     # 同时打印全部指标
+    python code/report_metrics.py            # 生成 results/final/metrics.json
+    python code/report_metrics.py --show     # 同时打印全部指标
 """
 from __future__ import annotations
 
@@ -25,14 +24,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _project import find_project_root  # noqa: E402
 ROOT = find_project_root(__file__)
 RES = ROOT / "results"
+FINAL = RES / "final"
 DATA = ROOT / "data_processed"
 
 
 def _load(name: str) -> dict:
-    p = RES / name
-    if not p.exists():
-        raise FileNotFoundError(f"缺少结果文件：{p}")
-    return json.loads(p.read_text(encoding="utf-8"))
+    for p in (RES / name, FINAL / name):
+        if p.exists():
+            return json.loads(p.read_text(encoding="utf-8"))
+    raise FileNotFoundError(f"缺少结果文件：{RES / name} 或 {FINAL / name}")
 
 
 def price_shape_metrics() -> dict:
@@ -294,9 +294,10 @@ def main() -> None:
     m.update(price_stats())
     m["preprocess"] = preprocess_stats()
 
-    (RES / "paper_metrics.json").write_text(
+    FINAL.mkdir(parents=True, exist_ok=True)
+    (FINAL / "metrics.json").write_text(
         json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"已写出 {RES / 'paper_metrics.json'}")
+    print(f"已写出 {FINAL / 'metrics.json'}")
 
     if args.show:
         def walk(prefix, obj):

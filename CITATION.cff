@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-message: "If you use this code or paper, please cite it as below."
+message: "If you use this code, please cite it as below."
 title: "微网与外部电网电力调控策略"
-abstract: "2026 年全国大学生数学建模竞赛 C 题的赛后公开整理：确定性线性规划、情景随机优化、滚动时域与实时电价下的因果执行。"
+abstract: "微网购电与储能调度：确定性线性规划、情景随机优化、滚动时域 MPC 与实时电价下的因果执行。2026 年全国大学生数学建模竞赛 C 题的独立实现。"
 authors:
   - name: "Alwayshere-su"
     website: "https://github.com/Alwayshere-su"
