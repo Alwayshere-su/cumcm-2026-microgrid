@@ -81,7 +81,7 @@
 │   ├─ q2_reg_ridge_trace_load.png       岭迹图·负荷（标注 α=1）
 │   ├─ q2_reg_ridge_trace_pv.png         岭迹图·光伏（标注 α=1）
 │   └─ q2_reg_coef_stability.png         OLS vs Ridge 系数稳定性对比
-└─ scripts/
+└─ code/
     └─ q2_reg_collinearity.py        生成 data/ 与 figures/ 的复现脚本
 ```
 
@@ -101,13 +101,13 @@
 
 ```powershell
 # 主脚本（生成共线性诊断全套数据与图）
-python scripts/q2_reg_collinearity.py
+python code/q2_reg_collinearity.py
 
 # 精度 / 成本对比（可选）
-python scripts/forecast_q2_reg.py ridge
-python scripts/forecast_q2_reg.py ols
-python scripts/compare_reg_ols_ridge_dates.py
-python scripts/benchmark_q2_reg.py
+python code/forecast_q2_reg.py ridge
+python code/forecast_q2_reg.py ols
+python code/compare_reg_ols_ridge_dates.py
+python code/benchmark_q2_reg.py
 ```
 
 > 注意：`q2_reg_collinearity.py` 的输出路径固定为仓库的 `results/` 与 `figures/`。
