@@ -39,8 +39,7 @@ data_processed/
 ## 仓库内的结果数据
 
 - `results/final/*.xlsx`：竞赛要求提交的 5 张结果表（`result1`、`result2`、`result3`、`result4-2`、`result4-3`）。
-- `results/final/*.json`：论文引用的关键指标、审计与消融结果，机器可读。
-- `figures/paper/*.png`：论文插图，直接从论文文档中提取。
+- `results/final/*.json`：模型文档与结果说明引用的关键指标、审计与消融结果，机器可读。
 
 原始逐段调度 CSV（如全年 10 分钟充放电轨迹）体积达数百 MB，未入库；运行求解脚本可在本地重新生成。
 

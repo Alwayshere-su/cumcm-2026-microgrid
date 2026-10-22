@@ -14,14 +14,14 @@
 | --- | --- |
 | 赛题附件 1–5 | 不复制、不再分发；复现需从官方渠道获取 |
 | 官方参考答案 / 评阅要点 | 未收录 |
-| 参考论文 PDF | 未收录；方法设计中的引用已在论文中标注 |
+| 参考论文 PDF | 未收录；方法依据见模型文档与代码注释 |
 | 论文格式模板、竞赛 AI 工具使用规定 | 未收录 |
 | 其他队伍的论文、代码或数据 | 未使用 |
 
 ## 自主产出
 
 - `code/`：参赛队编写与调试的求解、回测、绘图与核验程序。
-- `paper/`、`docs/`、`figures/paper/`：参赛队撰写的论文、报告、模型文档与自行绘制的图表。
+- `docs/`：参赛队撰写的模型推导、特征选择与灵敏性分析。
 - `results/final/`：参赛队运行程序得到的数值结果。
 
 ## 第三方软件
@@ -35,14 +35,14 @@
 | SciPy | 线性规划 / MILP | BSD-3-Clause |
 | scikit-learn | Ridge 回归与预处理 | BSD-3-Clause |
 | LightGBM | 非线性预测对照 | MIT |
-| matplotlib / seaborn | 论文绘图 | PSF-based / BSD-3-Clause |
+| matplotlib / seaborn | 绘图 | PSF-based / BSD-3-Clause |
 | openpyxl | Excel 读写 | MIT |
 | python-docx / lxml | 文档生成与检查 | MIT / BSD-3-Clause |
 | pytest | 验收测试 | MIT |
 
 ## AI 工具
 
-参赛队按竞赛要求披露了 AI 工具的使用范围与人工核验过程，见 `paper/AI使用报告.pdf` 与 `docs/ai_usage_log.md`。AI 工具仅用于实现层辅助，模型选择、参数设定、结果判断与最终定稿由参赛队完成。
+参赛队按竞赛要求单独提交了 AI 工具使用报告，本仓库不包含该报告。AI 工具仅用于实现层辅助（代码调试、绘图与自动化检查），模型选择、参数设定、结果判断与最终定稿由参赛队完成。
 
 ## 联系
 
