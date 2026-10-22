@@ -1,0 +1,15 @@
+numpy==1.26.4
+pandas==2.3.3
+scipy==1.15.3
+openpyxl==3.1.5
+scikit-learn==1.7.2
+matplotlib==3.10.9
+
+# 论文绘图与文档生成
+seaborn==0.13.2
+python-docx==1.2.0
+lxml==6.1.1
+
+# 非线性预测对照与验收
+lightgbm==4.6.0
+pytest>=8.0

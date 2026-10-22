@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-09-13T12:24:57",
+  "segments_csv": "results/q4_segments.csv",
+  "days": 334,
+  "rows": 96192,
+  "fee_q42_yuan": 14459917.960738003,
+  "fee_q43_yuan": 14752198.863339484,
+  "checks": [
+    {
+      "id": 1,
+      "name": "daily_total_equals_segment_sum",
+      "pass": true,
+      "detail": "每天全天量 vs 144 段和 最大偏差：计划 5.00e-07、充电 1.93e-06、放电 2.34e-06、紧急 2.35e-06 kWh",
+      "values": {
+        "plan": 4.998582880944014e-07,
+        "charge": 1.9255458028055727e-06,
+        "discharge": 2.336775651201606e-06,
+        "emergency": 2.345354005228728e-06
+      }
+    },
+    {
+      "id": 2,
+      "name": "fee_recompute_vs_harness",
+      "pass": true,
+      "detail": "4-2 重算 14,459,917.96 元 vs harness total_yuan_42.Q42_nb=14,459,917.96（差 +0.0000）；4-3 重算 14,752,198.86 元 vs harness total_yuan.Q0_fixed=14,752,198.86（差 +0.0000）",
+      "values": {
+        "q42_recompute": 14459917.960738003,
+        "q42_ref": 14459917.960738003,
+        "q42_gap": 0.0,
+        "q43_recompute": 14752198.863339484,
+        "q43_ref": 14752198.863339484,
+        "q43_gap": 0.0,
+        "tol": 1.0
+      }
+    },
+    {
+      "id": 3,
+      "name": "soc_bounds_and_continuity",
+      "pass": true,
+      "detail": "SOC ∈ [1200.000, 10800.000] kWh（界 [1200.0,10800.0]）；跨日最大断点 3.638e-12 kWh；首日 0:00 储电量 {'4-2': 6000.0, '4-3': 6000.0}",
+      "values": {
+        "soc_min": 1199.9999999999995,
+        "soc_max": 10800.000000000002,
+        "max_daily_break": 3.637978807091713e-12,
+        "first_start": {
+          "4-2": 6000.0,
+          "4-3": 6000.0
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "emergency_charge_exclusive",
+      "pass": true,
+      "detail": "同时段紧急购电且充电的段数 = 0",
+      "values": {
+        "conflict_slots": 0
+      }
+    },
+    {
+      "id": 5,
+      "name": "no_negative_adjusted",
+      "pass": true,
+      "detail": "adjusted_kwh 最小值 = 0.000000（≥0 即不售电）",
+      "values": {
+        "adjusted_min": 0.0
+      }
+    },
+    {
+      "id": 6,
+      "name": "xlsx_roundtrip_matches",
+      "pass": true,
+      "detail": "xlsx 读回逐格重算 vs 写入数据 最大偏差 = 5.000e-07",
+      "values": {
+        "max_dev": 4.999996008336893e-07
+      }
+    }
+  ],
+  "all_pass": true
+}

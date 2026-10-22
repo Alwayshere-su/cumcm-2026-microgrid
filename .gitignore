@@ -1,0 +1,57 @@
+# ---------------- 本地输入与工作区（不入库） ----------------
+/附件/
+/data_processed/
+/scripts/
+/提交包/
+/支撑材料.zip
+/归档区/
+/.dsh/
+/.claude/
+/.pytest_cache/
+/.pytest_submit_tmp/
+/.pytest_support_tmp/
+/.venv/
+__pycache__/
+*.py[cod]
+*.log
+
+# ---------------- 大体积与中间结果 ----------------
+/results/*
+!/results/README.md
+!/results/final/
+!/results/final/**
+/figures/*
+!/figures/paper/
+!/figures/paper/**
+
+# ---------------- 本地工作副本 ----------------
+# 对外发布的副本位于 paper/、docs/、results/final/ 与 figures/paper/
+/论文草稿.docx
+/AI使用报告.docx
+/AI使用报告_待审核.docx
+/附录A_支撑材料文件列表.docx
+/附录B_核心源程序.docx
+/result1.xlsx
+/result2.xlsx
+/result3.xlsx
+/result4-2.xlsx
+/result4-3.xlsx
+/问题一最终模型.md
+/问题二最终模型.md
+/问题三最终模型.md
+/问题四最终模型.md
+/问题二特征选择依据.md
+/问题3_灵敏性分析.md
+/论文数字校验报告.md
+/ai_usage_log.md
+/岭回归相关性证据/
+/AGENTS.md
+/数模国赛参考答案.pdf
+/全国大学生数学建模竞赛人工智能工具使用规定.pdf
+
+# ---------------- 过程文档（归档区保留） ----------------
+/docs/导师五点指导意见与论文草稿修改分析.md
+/docs/论文修改方案.md
+/docs/问题一_论文正文.md
+/docs/问题一_论文正文_精简版.md
+/docs/superpowers/

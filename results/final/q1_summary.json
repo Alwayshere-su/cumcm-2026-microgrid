@@ -1,0 +1,60 @@
+{
+  "model_type": "LP",
+  "solver": "scipy.optimize.linprog (HiGHS)",
+  "degeneracy_tie_break": {
+    "used": false,
+    "order": [
+      "purchase_cost",
+      "battery_throughput"
+    ]
+  },
+  "primary_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+  "tie_break_status": "not_needed",
+  "primary_optimal_cost_yuan": 35126.948589289634,
+  "primary_cost_tolerance_yuan": 1e-08,
+  "tie_break_cost_gap_yuan": 0.0,
+  "battery_throughput_kwh": 37540.60569835391,
+  "milp_crosscheck_cost_yuan": 35126.948589289634,
+  "milp_crosscheck_cost_gap_yuan": 0.0,
+  "shadow_prices": {
+    "soc_upper_capacity_value_yuan_per_kwh": 0.6550455555555555,
+    "soc_lower_relaxation_value_yuan_per_kwh": 0.659378888888889,
+    "charge_power_value_yuan_per_kwh": 0.33879999999999977,
+    "discharge_power_value_yuan_per_kwh": 0.0,
+    "common_power_rating_value_yuan_per_kw": 0.05646666666666662,
+    "active_soc_upper_intervals": 21,
+    "active_soc_lower_intervals": 8,
+    "active_charge_limit_intervals": 19,
+    "active_discharge_limit_intervals": 0,
+    "finite_difference_savings_yuan_for_one_unit": {
+      "soc_upper_capacity": 0.6550455555552617,
+      "soc_lower_relaxation": 0.6593788888931158,
+      "charge_and_discharge_power": 0.33879999999771826
+    },
+    "max_dual_finite_difference_error_yuan": 4.226841099352896e-12
+  },
+  "total_purchase_kwh": 59482.69899835391,
+  "total_purchase_cost_yuan": 35126.948589289634,
+  "no_storage_purchase_kwh": 61789.9354,
+  "no_storage_cost_yuan": 48052.046590846665,
+  "cost_saving_yuan": 12925.098001557031,
+  "cost_saving_ratio": 0.26898121762870153,
+  "total_load_kwh": 111024.8081,
+  "total_pv_kwh": 55482.835666666666,
+  "total_charge_kwh": 20740.66613168724,
+  "total_discharge_kwh": 16799.939566666668,
+  "total_surplus_kwh": 0.0,
+  "initial_energy_kwh": 6000.0,
+  "terminal_energy_kwh": 6000.0,
+  "min_energy_kwh": 1200.0,
+  "max_energy_kwh": 10800.0,
+  "max_charge_kwh": 833.3333333333333,
+  "max_discharge_kwh": 715.6530333333334,
+  "max_balance_residual_kwh": 1.1368683772161603e-13,
+  "max_soc_residual_kwh": 8.597567102697212e-13,
+  "max_simultaneous_charge_discharge_kwh": 0.0,
+  "sum_charge_times_discharge_kwh2": 0.0,
+  "active_charge_intervals": 45,
+  "active_discharge_intervals": 37,
+  "active_surplus_intervals": 0
+}

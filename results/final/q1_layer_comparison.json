@@ -1,0 +1,155 @@
+{
+  "data": {
+    "n_intervals": 144,
+    "interval_hours": 0.16666666666666666,
+    "max_charge_discharge_kwh": 833.3333333333333
+  },
+  "models": {
+    "LP_single_layer": {
+      "model": "LP 松弛单层",
+      "total_cost_yuan": 35126.948589289634,
+      "total_purchase_kwh": 59482.69899835391,
+      "terminal_energy_kwh": 6000.0,
+      "initial_energy_kwh": 6000.0,
+      "total_charge_kwh": 20740.66613168724,
+      "total_discharge_kwh": 16799.939566666668,
+      "total_surplus_kwh": 0.0,
+      "min_energy_kwh": 1200.0,
+      "max_energy_kwh": 10800.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.9182,
+      "simultaneous_charge_discharge_kwh": 0.0,
+      "n_zero_buy_intervals": 58,
+      "max_soc_residual_kwh": 8.597567102697212e-13,
+      "elapsed_s": 0.009114700005738996
+    },
+    "MILP_single_objective": {
+      "model": "MILP 单目标(含0-1)",
+      "total_cost_yuan": 35126.948589289634,
+      "total_purchase_kwh": 59482.69899835391,
+      "terminal_energy_kwh": 6000.0,
+      "initial_energy_kwh": 6000.0,
+      "total_charge_kwh": 20740.66613168724,
+      "total_discharge_kwh": 16799.939566666668,
+      "total_surplus_kwh": 0.0,
+      "min_energy_kwh": 1200.0,
+      "max_energy_kwh": 10800.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.9182,
+      "simultaneous_charge_discharge_kwh": 0.0,
+      "n_zero_buy_intervals": 58,
+      "max_soc_residual_kwh": 8.597567102697212e-13,
+      "elapsed_s": 0.04990440000256058
+    },
+    "LP_deterministic": {
+      "model": "LP 确定性求解",
+      "total_cost_yuan": 35126.948589289634,
+      "total_purchase_kwh": 59482.69899835391,
+      "terminal_energy_kwh": 6000.0,
+      "initial_energy_kwh": 6000.0,
+      "total_charge_kwh": 20740.66613168724,
+      "total_discharge_kwh": 16799.939566666668,
+      "total_surplus_kwh": 0.0,
+      "min_energy_kwh": 1200.0,
+      "max_energy_kwh": 10800.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.9182,
+      "simultaneous_charge_discharge_kwh": 0.0,
+      "n_zero_buy_intervals": 58,
+      "max_soc_residual_kwh": 8.597567102697212e-13,
+      "elapsed_s": 0.10105979999934789
+    },
+    "two_layer": {
+      "model": "两层模型(LP+DP)",
+      "total_cost_yuan": 35126.94858928961,
+      "total_purchase_kwh": 59482.69899835392,
+      "terminal_energy_kwh": 6000.0,
+      "initial_energy_kwh": 6000.0,
+      "total_charge_kwh": 20740.66613168724,
+      "total_discharge_kwh": 16799.939566666664,
+      "total_surplus_kwh": 3.5704772471945034e-12,
+      "min_energy_kwh": 1200.0,
+      "max_energy_kwh": 10800.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.918200000008,
+      "simultaneous_charge_discharge_kwh": 0.0,
+      "n_zero_buy_intervals": 58,
+      "max_soc_residual_kwh": 9.094947017729282e-13,
+      "elapsed_s": 0.03732829999353271,
+      "dp_max_segments": 22,
+      "dp_total_segments": 1985
+    }
+  },
+  "crosscheck": {
+    "max_abs_buy_diff_lp_vs_two_layer_kwh": 333.33333333333337,
+    "sum_abs_buy_diff_lp_vs_two_layer_kwh": 666.6666666666738,
+    "n_intervals_differing_lp_vs_two_layer": 2,
+    "differing_slots": [
+      140,
+      142
+    ],
+    "max_abs_buy_diff_lp_vs_milp_single_kwh": 333.33333333333337,
+    "max_abs_buy_diff_lp_vs_lp_det_kwh": 0.0,
+    "max_abs_energy_diff_lp_vs_two_layer_kwh": 300.0,
+    "cost_diff_two_layer_vs_lp_yuan": -2.1827872842550278e-11,
+    "cost_diff_milp_single_vs_lp_yuan": 0.0,
+    "cost_diff_lp_det_vs_lp_yuan": 0.0
+  },
+  "shadow_price_diagnostics": {
+    "pi_min": 0.3713,
+    "pi_max": 1.2561,
+    "pi_within_0_and_c": true,
+    "max_abs_pi_minus_c_on_positive_buy": 0.0,
+    "max_abs_pi_on_surplus": 0.0,
+    "lambda_min": -1.13049,
+    "lambda_max": -0.4711111111111111,
+    "lambda_at_t0": -0.47544444444444445,
+    "dj_de0_from_lp": -0.47544444444429246,
+    "dp_marginal_value_left": 0.47544444444444445,
+    "dp_marginal_value_right": 0.47544444444444445,
+    "requested_slots": [
+      {
+        "slot": 61,
+        "interval": "10:00-10:10",
+        "price_c": 0.9919,
+        "internal_price_pi": 0.4785,
+        "buy_kwh": 0.0
+      },
+      {
+        "slot": 73,
+        "interval": "12:00-12:10",
+        "price_c": 0.4411,
+        "internal_price_pi": 0.4411,
+        "buy_kwh": 480.41245000000004
+      },
+      {
+        "slot": 85,
+        "interval": "14:00-14:10",
+        "price_c": 1.0002,
+        "internal_price_pi": 0.4785,
+        "buy_kwh": 0.0
+      },
+      {
+        "slot": 97,
+        "interval": "16:00-16:10",
+        "price_c": 0.8271,
+        "internal_price_pi": 0.8271,
+        "buy_kwh": 445.43164999999993
+      },
+      {
+        "slot": 109,
+        "interval": "18:00-18:10",
+        "price_c": 1.2561,
+        "internal_price_pi": 1.2561,
+        "buy_kwh": 531.8940499999999
+      },
+      {
+        "slot": 121,
+        "interval": "20:00-20:10",
+        "price_c": 1.3513,
+        "internal_price_pi": 1.2561,
+        "buy_kwh": 0.0
+      }
+    ]
+  }
+}

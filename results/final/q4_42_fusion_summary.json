@@ -1,0 +1,124 @@
+{
+  "days": 334,
+  "window": [
+    "2025-02-01",
+    "2025-12-31"
+  ],
+  "scenarios": 10,
+  "residual_window": 30,
+  "shape_window": 35,
+  "level_window": 14,
+  "price_model": "legacy",
+  "source_q42": "fusion",
+  "source_q43": "ridge",
+  "q42_quantile": 0.8,
+  "vterm_mult": 1.0,
+  "release_quantile": 0.6,
+  "rule": "C",
+  "grid_charge": true,
+  "execution": "causal",
+  "commitment": "nb",
+  "total_yuan": {
+    "Q0_fixed": 15781497.016156187,
+    "Q1_point": 15973625.589031477,
+    "Q2_nb": 16087447.868590558,
+    "Q3_oracle_det": 13813819.42021603,
+    "Q3_oracle_nb": 13849729.215914264,
+    "Q4_offline": 12780883.287952026
+  },
+  "total_yuan_42": {
+    "Q42_fixed": 17171534.74025028,
+    "Q42_point": 17117170.544328555,
+    "Q42_nb": 15729620.8856126
+  },
+  "emergency_kwh_42": {
+    "Q42_fixed": 778690.2854271575,
+    "Q42_point": 785508.9361933479,
+    "Q42_nb": 235173.1403965447
+  },
+  "cvar95_daily_42": {
+    "Q42_fixed": 53302.73471796676,
+    "Q42_point": 53130.10671055574,
+    "Q42_nb": 48757.42866425431
+  },
+  "worst_day_42": {
+    "Q42_fixed": 126868.22795191698,
+    "Q42_point": 126280.62163318256,
+    "Q42_nb": 105188.07036167418
+  },
+  "terminal_soc_42": {
+    "Q42_fixed": 10620.302547708116,
+    "Q42_point": 10620.302547708116,
+    "Q42_nb": 10744.99220339679
+  },
+  "effects_42_yuan": {
+    "price_signal_Q42fixed_to_Q42point": -54364.1959217228,
+    "commitment_Q42point_to_Q42nb": -1387549.658715956
+  },
+  "wan_yuan": {
+    "Q0_fixed": 1578.1497016156188,
+    "Q1_point": 1597.3625589031476,
+    "Q2_nb": 1608.7447868590557,
+    "Q3_oracle_det": 1381.381942021603,
+    "Q3_oracle_nb": 1384.9729215914265,
+    "Q4_offline": 1278.0883287952026
+  },
+  "emergency_kwh": {
+    "Q0_fixed": 487866.97713466315,
+    "Q1_point": 491160.46559351205,
+    "Q2_nb": 487231.42778578313,
+    "Q3_oracle_det": 0.0,
+    "Q3_oracle_nb": 0.0
+  },
+  "under_kwh": {
+    "Q0_fixed": 576962.3341706914,
+    "Q1_point": 830601.4505754722,
+    "Q2_nb": 1079984.6724325595,
+    "Q3_oracle_det": 554276.7562373327,
+    "Q3_oracle_nb": 607744.258172936
+  },
+  "over_kwh": {
+    "Q0_fixed": 589475.5652216326,
+    "Q1_point": 1073525.507525069,
+    "Q2_nb": 1072195.0684010806,
+    "Q3_oracle_det": 964278.4224449336,
+    "Q3_oracle_nb": 996904.2820340056
+  },
+  "unused_kwh": {
+    "Q0_fixed": 1841291.7341496083,
+    "Q1_point": 1837228.8112882744,
+    "Q2_nb": 1860476.9908167776,
+    "Q3_oracle_det": 1397591.1903190925,
+    "Q3_oracle_nb": 1397591.1903190925
+  },
+  "cvar95_daily": {
+    "Q0_fixed": 48921.83396351963,
+    "Q1_point": 49505.3033717575,
+    "Q2_nb": 49857.87276757529,
+    "Q3_oracle_det": 42818.5604753209,
+    "Q3_oracle_nb": 42929.71866777556
+  },
+  "worst_day": {
+    "Q0_fixed": 103869.91288318504,
+    "Q1_point": 104686.35026734383,
+    "Q2_nb": 104662.03221602732,
+    "Q3_oracle_det": 74042.4466142052,
+    "Q3_oracle_nb": 74178.48548013975
+  },
+  "terminal_soc": {
+    "Q0_fixed": 10659.98808867342,
+    "Q1_point": 10659.98808867342,
+    "Q2_nb": 10659.98808867342,
+    "Q3_oracle_det": 10200.0,
+    "Q3_oracle_nb": 10200.0
+  },
+  "effects_yuan": {
+    "price_signal_Q0_to_Q1": 192128.57287528925,
+    "commitment_Q1_to_Q2": 113822.27955908142,
+    "oracle_price_Q2_to_Q3n": -2237718.6526762936,
+    "commitment_under_oracle_Q3n_to_Q3det": -35909.79569823481,
+    "regret_Q2_vs_offline": 3306564.5806385316,
+    "regret_Q1_vs_offline": 3192742.30107945,
+    "regret_Q0_vs_offline": 3000613.728204161
+  }
+}
